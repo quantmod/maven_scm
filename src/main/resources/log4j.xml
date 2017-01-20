@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="true" threshold="all">
+	<!-- Appenders -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss,SSS} %5p [%t] (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+	<appender name="FILE_Appender" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="File" value="../logs/lwl_dubbo_web.log" />
+		<param name="MaxBackupIndex" value="100" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="SQL_Appender" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="File" value="../logs/lwl_dubbo_web_sql.log" />
+		<param name="MaxBackupIndex" value="100" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="Error_Appender" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="File" value="../logs/lwl_dubbo_web_error.log" />
+		<param name="MaxBackupIndex" value="100" /> <!-- 最大记录文件数 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="Remote_Call_Appender" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="File"
+			value="../logs/lwl_dubbo_web_remote_call.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="MaxBackupIndex" value="100" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+
+	
+	<!-- 输出到日志文件 每天一个日志  -->
+	<appender name="filelog_daily" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="../logs/daily.log" />
+		<param name="DatePattern" value="'daily.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+		<param name="BufferedIO" value="true" />
+        <!-- 8K为一个写单元 -->
+        <param name="BufferSize" value="8192" />
+	</appender>
+	
+	
+		
+	<!-- 输出到数据库的配置 -->
+	 <appender name="DATABASE" class="org.apache.log4j.jdbc.JDBCAppender">
+		<param name="URL" value="jdbc:mysql://127.0.0.1:3306/test" />
+		<param name="driver" value="com.mysql.jdbc.Driver" />
+		<param name="user" value="root" />
+		<param name="password" value="" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="insert into log_icecoldmonitor(level,category,thread,time,location,note) values('%p','%c','%t','%d{yyyy-MM-dd HH:mm:ss:SSS}','%l','%m') " />
+		</layout>
+	</appender>
+	
+	 
+	 
+	 <!--
+	 数据库代码 
+    CREATE TABLE `log_icecoldmonitor` (  
+      `Id` int(11) NOT NULL AUTO_INCREMENT,  
+      `level` varchar(255) NOT NULL DEFAULT '' COMMENT '优先级',  
+      `category` varchar(255) NOT NULL DEFAULT '' COMMENT '类目',  
+      `thread` varchar(255) NOT NULL DEFAULT '' COMMENT '进程',  
+      `time` varchar(30) NOT NULL DEFAULT '' COMMENT '时间',  
+      `location` varchar(255) NOT NULL DEFAULT '' COMMENT '位置',  
+      `note` text COMMENT '日志信息',  
+      PRIMARY KEY (`Id`)  
+    )  
+    
+    
+      -->
+    
+    
+	<!--  日志输出到邮件-->
+	<!-- 发邮件（只有ERROR时才会发送！） 需要mail.jar和activation.jar-->
+	<appender name="EMAIL_QQ" class="org.apache.log4j.net.SMTPAppender">
+	    <!--
+			日志的错误级别 <param name="threshold" value="ERROR"/>
+		-->
+		<!-- 缓存文件大小，日志达到128K时发送Email -->
+		<param name="Threshold" value="ERROR" />
+		<param name="BufferSize" value="128" /><!-- 单位K -->
+		<param name="SMTPHost" value="smtp.qq.com" />
+		<param name="SMTPUsername" value="test" />
+		<param name="SMTPPassword" value="test" />
+		<param name="From" value="test@qq.com" />
+		<param name="To" value="test@gmail.com" />
+		<param name="Subject" value="测试邮件发送" />
+		<param name="LocationInfo" value="true" />
+		<param name="SMTPDebug" value="true" />
+		<layout class="org.cjj.log4j.extend.PatternLayout_zh">
+			<param name="ConversionPattern" value="[%d{ISO8601}] %-5p %c %m%n" />
+		</layout>
+	</appender>
+
+	<!--- 异步测试，当日志达到缓存区大小时候执行所包的appender -->
+	<appender name="ASYNC_test" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="256" />
+		<appender-ref ref="EMAIL_QQ" />
+		
+		<appender-ref ref="DATABASE" />
+	</appender>
+	
+	
+	
+	<!-- Loggers -->
+	
+	<!-- additivity指示是否遵循缺省的继承机制 -->
+	<logger name="ERROR_LOGGER" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="Error_Appender" />
+	</logger>
+	<logger name="SQL_LOGGER" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="SQL_Appender" />
+	</logger>
+	<logger name="REMOTE_CALL_LOGGER" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="Remote_Call_Appender" />
+	</logger>
+	<logger name="ALIAPY_MQ_PUSH_LISTENER" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="Remote_Call_Appender" />
+	</logger>
+	
+	<!-- 包下的输出日志输出到文件和控制台 -->
+	<logger name="com.jikexueyuancrm" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="FILE_Appender" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	
+	<logger name="java.sql.Connection" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="SQL_Appender" />
+	</logger>
+	<logger name="java.sql.Statement" additivity="true">
+		<level value="INFO" />
+		<appender-ref ref="SQL_Appender" />
+	</logger>
+	<logger name="java.sql.PreparedStatement" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="SQL_Appender" />
+	</logger>
+	
+	
+	<logger name="java.sql.ResultSet" additivity="true">
+		<level value="INFO" />
+		<appender-ref ref="SQL_Appender" />
+	</logger>
+	
+	
+	
+	
+	<!-- 修改 org.hibernate.engine.jdbc.spi.SqlStatementLogger 里面的日志输出改为log4j  level为debug  -->
+	
+	<logger name="org.hibernate.engine.jdbc.spi" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="SQL_Appender" />
+	</logger>
+
+	<logger name="com.jikexueyuancrm.test.Log4jDataBaseTest" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="DATABASE" />
+	</logger>
+	
+	
+	
+	<root>
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</log4j:configuration>

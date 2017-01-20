@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-6 15:17:20 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.jikexueyuancrm.entity.WebContent" table="web_content" catalog="test">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="author" type="string">
+            <column name="author" />
+        </property>
+        <property name="biz" type="string">
+            <column name="biz" />
+        </property>
+        <property name="browseTime" type="int">
+            <column name="browse_time" not-null="true" />
+        </property>
+        <property name="captureWebsite" type="string">
+            <column name="capture_website" />
+        </property>
+        <property name="commentTime" type="int">
+            <column name="comment_time" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="65535" />
+        </property>
+        <property name="crawlerId" type="java.lang.Integer">
+            <column name="crawler_id" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19" />
+        </property>
+        <property name="originType" type="string">
+            <column name="origin_type" />
+        </property>
+        <property name="published" type="timestamp">
+            <column name="published" length="19" />
+        </property>
+        <property name="resourse" type="string">
+            <column name="resourse" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="1000" />
+        </property>
+        <property name="titleHs" type="string">
+            <column name="title_hs" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="1000" />
+        </property>
+    </class>
+</hibernate-mapping>
