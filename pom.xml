@@ -20,7 +20,7 @@
 <!-- 	
 		提交：
 
-		mvn -Dmessage="first commit" scm:checkin
+		mvn -Dmessage="commit" scm:checkin
 		
 		获取最新版本：
 		
