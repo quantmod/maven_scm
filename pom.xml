@@ -538,7 +538,7 @@
                         </goals>
                         <configuration>
                             <files>
-                                <file>src/main/rescoures/db.properties</file> <!-- 路径相对于pom.xml文件 -->
+                                <file>src/main/resources/db.properties</file> <!-- 路径相对于pom.xml文件 -->
                             </files>
                         </configuration>
                     </execution>
