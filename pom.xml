@@ -546,7 +546,7 @@
 		
 		
 		<!--
-		mvn release:prepare
+		mvn release:prepare  以创建一个tag的形式在github的生成一个release版本
 		mvn release:rollback
 		mvn release:perform
 		  -->
