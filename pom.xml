@@ -401,6 +401,8 @@
   
   
   
+  
+  <!-- 当前处于激活状态的profile都有哪些命令mvn help:active-profiles。 -->
   <profiles>
 
         <!--default开发分支-->
@@ -414,7 +416,13 @@
                 <activeByDefault>true</activeByDefault>
 
             </activation>
+        <properties>
+        <gpg.executable>gpg2</gpg.executable>
+        <gpg.passphrase>///</gpg.passphrase>
+        </properties>
+            
             <build>
+            
           <plugins>
           <plugin>
            <!-- Source -->
@@ -528,8 +536,21 @@
         </configuration>
       </plugin>
 		
-	
-	
+	<!-- GPG自动签名的插件 -->
+	    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-gpg-plugin</artifactId>
+      <version>1.5</version>
+      <executions>
+        <execution>
+          <id>sign-artifacts</id>
+          <phase>verify</phase>
+          <goals>
+            <goal>sign</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
 	
 	<!-- 使用property-maven-plugin插件加载property文件 -->
 	      <plugin>
