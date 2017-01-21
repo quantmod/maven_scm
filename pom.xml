@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.sina.midu</groupId>
+  <groupId>com.github.quantmod</groupId>
   <artifactId>weixin-dns-maven-slave</artifactId>
- <version>1.10</version> 
+ <version>1.11-SNAPSHOT</version> 
   
  <name>SCM Sample Project</name>
  <description>SCM Sample Project</description>
@@ -36,23 +36,28 @@
       <developerConnection>scm:git:https://github.com/quantmod/maven_scm.git</developerConnection>  
   <!--   git项目浏览器里的地址      -->
      <url>https://github.com/quantmod/maven_scm</url>  
-
-    <tag>weixin-dns-maven-slave-1.10</tag>
   </scm>  
     
     <developers>
         <developer>
-            <id>code4craft</id>
-            <name>Yihua huang</name>
-            <email>code4crafer@gmail.com</email>
-        </developer>
-        <developer>
             <id>yuanhai</id>
             <name>Yuan Hai</name>
             <email>jethai@126.com</email>
+              <organization>miduchina</organization>
+      <organizationUrl></organizationUrl>
         </developer>
     </developers>
-
+    
+<distributionManagement>
+  <snapshotRepository>
+    <id>sonatype-oss</id>
+    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+  </snapshotRepository>
+  <repository>
+    <id>sonatype-oss</id>
+    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+  </repository>
+</distributionManagement>
    
   <packaging>jar</packaging>
   
