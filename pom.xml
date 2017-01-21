@@ -25,18 +25,35 @@
 		获取最新版本：
 		
 		mvn scm:update
-
+  
+  
+       Git remote -v 查看是以https还是ssh推送代码
 
 
  -->
 
+
+
+ 				<!--  以SSH访问        -->
+   <scm>
+        <connection>scm:git:git@github.com:quantmod/maven_scm.git</connection>
+        <developerConnection>scm:git:git@github.com:quantmod/maven_scm.git</developerConnection>
+        <url>git@github.com:quantmod/maven_scm</url>
+  </scm>
+  
+ 
+  
+<!--      以 HTTPS访问 
+
      <scm>  
-     <!--  git项目地址可以用SSH  也可以用 HTTPS的       -->
       <connection>scm:git:https://github.com/quantmod/maven_scm.git</connection>    
       <developerConnection>scm:git:https://github.com/quantmod/maven_scm.git</developerConnection>  
-  <!--   git项目浏览器里的地址      -->
+       git项目浏览器里的地址     
      <url>https://github.com/quantmod/maven_scm</url>  
   </scm>  
+  
+     -->
+  
     
     <developers>
         <developer>
@@ -402,7 +419,7 @@
   
   
   
-  <!-- 当前处于激活状态的profile都有哪些命令mvn help:active-profiles。 -->
+  <!-- 当前处于激活状态的profile都有哪些命令  mvn help:active-profiles。 -->
   <profiles>
 
         <!--default开发分支-->
