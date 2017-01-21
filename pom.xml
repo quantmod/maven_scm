@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>cn.sina.midu</groupId>
   <artifactId>weixin-dns-maven-slave</artifactId>
- <version>1.5-SNAPSHOT</version> 
+ <version>1.9</version> 
   
  <name>SCM Sample Project</name>
  <description>SCM Sample Project</description>
@@ -36,7 +36,8 @@
       <developerConnection>scm:git:https://github.com/quantmod/maven_scm.git</developerConnection>  
   <!--   git项目浏览器里的地址      -->
      <url>https://github.com/quantmod/maven_scm</url>  
-    </scm>  
+      <tag>my1.9</tag>
+  </scm>  
     
     <developers>
         <developer>
@@ -537,7 +538,7 @@
                         </goals>
                         <configuration>
                             <files>
-                                <file>db.properties</file>
+                                <file>src/main/resources/db.properties</file>
                             </files>
                         </configuration>
                     </execution>
