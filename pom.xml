@@ -457,11 +457,12 @@
            
             
         <properties>
-         
+         <gpg.keyname>8A4A2D8F</gpg.keyname>
         <!--指定gpg签名程序可执行文件路径  更多maven-gpg-plugin的配置项直接看http://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html-->
        <gpg.executable>C:\Program Files (x86)\GNU\GnuPG\pub\gpg2.exe</gpg.executable>
      <!--  密钥库密码 -->
         <gpg.passphrase>hit7293380</gpg.passphrase>
+        
         </properties>
             
             <build>
