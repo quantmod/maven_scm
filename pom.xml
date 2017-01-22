@@ -18,6 +18,9 @@
 
 
 <!-- 	
+
+
+
 		提交：
 
 		mvn -Dmessage="commit" scm:checkin
@@ -28,8 +31,14 @@
   
   
        Git remote -v 查看是以https还是ssh推送代码
-
-
+       
+       mvn clean deploy 部署jar包到 OSS中
+       
+      
+       删除本地tag：    Git tag -d [tagName] 
+      删除远程tag：    git push origin :refs/tags/[tagName]
+      
+      删除远端branch： git push origin :[branchName]
  -->
 
 
@@ -65,6 +74,17 @@
       <organizationUrl />
         </developer>
     </developers>
+    
+  <!--   对应的sonatype的账号和密码配置在maven的settings.xml中
+  
+      <server>
+      <id>sonatype-oss</id>
+      <username>jethai</username>
+      <password>csrhit7293380</password>
+      
+      
+    </server> -->
+ 
     
 <distributionManagement>
   <snapshotRepository>
@@ -434,8 +454,14 @@
                 <activeByDefault>true</activeByDefault>
 
             </activation>
+           
+            
         <properties>
-       <gpg.executable>gpg2</gpg.executable>
+         
+        <!--指定gpg签名程序可执行文件路径  更多maven-gpg-plugin的配置项直接看http://maven.apache.org/plugins/maven-gpg-plugin/sign-mojo.html-->
+       <gpg.executable>C:\Program Files (x86)\GNU\GnuPG\pub\gpg2.exe</gpg.executable>
+     <!--  密钥库密码 -->
+        <gpg.passphrase>hit7293380</gpg.passphrase>
         </properties>
             
             <build>
@@ -553,7 +579,7 @@
         </configuration>
       </plugin>
 		
-<!-- 	 GPG自动签名的插件 
+<!-- 	 GPG自动签名的插件  -->
 	    <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-gpg-plugin</artifactId>
@@ -568,7 +594,7 @@
         </execution>
       </executions>
     </plugin>
-	 -->
+	
 	<!-- 使用property-maven-plugin插件加载property文件 -->
 	      <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -715,13 +741,13 @@
 	  
 	  
 	  <!-- ProGuard混淆插件-->
-         
+      <!--  mvn proguard:proguard  mvn 插件简称:某个goal  单独执行某个plugin -->
           <plugin>
                 <groupId>com.github.wvengen</groupId>
                 <artifactId>proguard-maven-plugin</artifactId>
                 
 	             <version>2.0.11</version>
-             
+						
                 <executions>
                     <execution>
                         <!-- 混淆时刻，这里是打包的时候混淆-->
@@ -733,6 +759,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                 <skip>true</skip>  <!-- 该plugin不执行 -->
                     <!-- 是否将生成的PG文件安装部署-->
                     <attach>true</attach>
                     <!-- 是否混淆-->
