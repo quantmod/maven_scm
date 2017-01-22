@@ -36,6 +36,7 @@
        
       git tag  查看本地标签
       git branch 查看本地分支
+      git branch -a/-r查看远程分支(-a表示所有包括本地和远程,-r只代表远程)
  push单个tag，命令格式为：git push origin [tagname]
           删除本地tag：    Git tag -d [tagName] 
       删除远程tag：    git push origin :refs/tags/[tagName]
