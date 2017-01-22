@@ -21,7 +21,7 @@
 
 
 
-		提交：
+		
 
 		mvn -Dmessage="commit" scm:checkin
 		
