@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.quantmod</groupId>
   <artifactId>weixin-dns-maven-slave</artifactId>
- <version>1.14-SNAPSHOT</version> 
+ <version>1.14</version> 
   
  <name>SCM Sample Project</name>
  <description>SCM Sample Project</description>
@@ -54,7 +54,7 @@
         <connection>scm:git:git@github.com:quantmod/maven_scm.git</connection>
         <developerConnection>scm:git:git@github.com:quantmod/maven_scm.git</developerConnection>
         <url>git@github.com:quantmod/maven_scm</url>
-    <tag>HEAD</tag>
+    <tag>weixin-dns-maven-slave-1.14</tag>
   </scm>
   
  
